@@ -1,0 +1,114 @@
+---
+title: "GroupProject"
+format: html
+editor: visual
+---
+
+## Dataset 3
+
+## **Traffic Crashes Data**
+
+```{r, echo=FALSE}
+crashes= read.csv("crashes.csv")
+```
+
+### Source -
+
+Source of data - [Link](https://catalog.data.gov/dataset/traffic-crashes-crashes)
+
+### Description -
+
+The data-set has data on Traffic Crashes in Chicago from 2015 onwards, and contains details of each crash, including:
+
+\- **Location:** The latitude and longitude of the crash
+
+\- **Date and time:** The date and time of the crash
+
+\- **Injuries:** The number and type of injuries that occurred
+
+\- **Damage:** The estimated damage cost of the crash
+
+\- **Crash Type:** The details about the type of crash - hit and run, no right of way, intersection related, causes etc
+
+\- **Conditions:** The details about the weather, lighting, traffic, traffic control devices, roads etc
+
+This dataset can be used to identify the probabilities of crashes happening, and their eventual consequences, given the surrounding situations such as time of day, weather, road conditions, traffic conditions, lighting, roadway surface etc
+
+### Research Questions -
+
+1.  Given that there is a crash, based on the location, time, crash type, and surrounding road and traffic conditions, will there be damages to a vehicle?
+
+-   **Outcome Variable** - Damage or no damage (0 or 1) - categorical variable
+-   **Input/Explanatory Variables** - Location, Date, time of the day, crash type, and surrounding conditions
+
+2.  How long it takes for police to be notified, given the nature of the accident?
+
+-   **Outcome Variable** - Created from two time variable, continuous variable
+-   **Input/Explanatory Variables** - Location, Date, time of the day, crash type, and surrounding conditions
+
+Considerations:
+
+1.  What variables we want to choose--how many missing values? Skewed? Not much difference between categories?
+2.  Missing value
+3.  Time of crashes: shows a trend, month shows little trend, and little difference in day of the week
+4.  Primary cause -- unable to determine-- a lot of them in this category, provide little information
+5.  What are some variables mean? do we have a code book?
+6.  need to convert posted_speed_limit to category from numeric?
+7.  select observations based on major categories?
+
+```{r}
+library(DataExplorer)
+```
+
+```{r}
+introduce(crashes)
+```
+
+```{r}
+plot_intro(crashes)
+```
+
+```{r}
+plot_histogram(crashes$CRASH_HOUR)
+```
+
+```{r}
+plot_histogram(crashes$CRASH_DAY_OF_WEEK)
+```
+
+```{r}
+plot_histogram(crashes$CRASH_MONTH)
+```
+
+```{r}
+plot_bar(crashes$PRIM_CONTRIBUTORY_CAUSE)
+```
+
+```{r}
+plot_histogram(crashes$POSTED_SPEED_LIMIT)
+
+```
+
+```{r}
+plot_bar(crashes$CRASH_TYPE)
+```
+
+```{r}
+plot_bar(crashes$WEATHER_CONDITION)
+```
+
+```{r}
+plot_bar(crashes$LIGHTING_CONDITION)
+```
+
+```{r}
+plot_bar(crashes$FIRST_CRASH_TYPE)
+```
+
+```{r}
+plot_bar(crashes$TRAFFICWAY_TYPE)
+```
+
+```{r}
+plot_bar(crashes$ROADWAY_SURFACE_COND)
+```
